@@ -33,7 +33,7 @@ public class RecvThread extends Thread {
                     case HEADER_GO:
                         String go = mDataInputStream.readUTF();
                         Message msg1 = Message.obtain();
-                        msg1.what = MainActivity.CMD_GOBUTTON;
+                        msg1.what = MainActivity.CMD_FORWARDBUTTON;
                         msg1.obj = "F";
                         ServerThread.mMainHandler.sendMessage(msg1);
                         break;
