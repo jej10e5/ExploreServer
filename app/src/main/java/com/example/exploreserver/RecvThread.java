@@ -13,6 +13,8 @@ public class RecvThread extends Thread {
     public static final int HEADER_RIGHT = 0x33333333; //오른쪽으로 가는 키의 주소
     public static final int HEADER_LEFT = 0x44444444; //왼쪽으로 가는 키의 주소
     public static final int HEADER_STOP = 0x55555555; //멈추는 키의 주소
+    public static final int HEADER_VOICESTART=0x66666666; //음성전달시작 버튼 키의 주소
+    public static final int HEADER_VOICEQUIT=0x77777777; //음성전달종료 버튼 키의 주소
 
     private DataInputStream mDataInputStream;
 
@@ -64,6 +66,20 @@ public class RecvThread extends Thread {
                         msg5.what = MainActivity.CMD_STOP;
                         msg5.obj = "S";
                         ServerThread.mMainHandler.sendMessage(msg5);
+                        break;
+                    case HEADER_VOICESTART:
+                        String voicestart=mDataInputStream.readUTF();
+                        Message msg8 = Message.obtain();
+                        msg8.what = MainActivity.CMD_VOICESTART;
+                        msg8.obj = "start";
+                        ServerThread.mMainHandler.sendMessage(msg8);
+                        break;
+                    case HEADER_VOICEQUIT:
+                        String voicequit=mDataInputStream.readUTF();
+                        Message msg9 = Message.obtain();
+                        msg9.what = MainActivity.CMD_VOICEQUIT;
+                        msg9.obj = "end";
+                        ServerThread.mMainHandler.sendMessage(msg9);
                         break;
                 }
             }

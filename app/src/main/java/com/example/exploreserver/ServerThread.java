@@ -33,7 +33,7 @@ public class ServerThread extends Thread {
         ServerSocket servSock=null;
         try{
             //서버 소켓을 초기화한다.
-            servSock=new ServerSocket(9000);
+            servSock=new ServerSocket(9001);
             //서버의  IP주소와 포트 번호를 출력한다.
             doPrintln(">> 서버 시작! "+getDeviceIp()+"/"+servSock.getLocalPort());
 
@@ -47,7 +47,7 @@ public class ServerThread extends Thread {
                 doPrintln(">> 클라이언트 접속: "+ip+"/"+port);
                 //별도의 스레드로 클라이언트와 통신한다.
                 try{
-                    DatagramSocket datagramSocket=new DatagramSocket(50005); //UDP 포트 번호 설정
+                    DatagramSocket datagramSocket=new DatagramSocket(50001); //UDP 포트 번호 설정
                     SendThread thread=new SendThread(sock.getOutputStream());
                     RecvThread recvthread=new RecvThread(sock.getInputStream());
                     VoiceRecv voiceRecv=new VoiceRecv(datagramSocket);
@@ -92,7 +92,7 @@ public class ServerThread extends Thread {
         if(ipaddr==null)
             ipaddr=getMobileIp();
         if(ipaddr==null)
-            ipaddr="127.0.0.1";
+            ipaddr="";
         return ipaddr;
     }
 

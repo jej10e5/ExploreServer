@@ -14,6 +14,7 @@ public class VoiceRecv extends Thread{
     private static final int SAMPLE_INTERVAL = 20; // Milliseconds
     private static final int SAMPLE_SIZE = 2; // Bytes
     private static final int BUF_SIZE = SAMPLE_INTERVAL * SAMPLE_INTERVAL * SAMPLE_SIZE * 2; //Bytes
+    private int port = 50001;
     private boolean speakers = true; // Enable speakers?
     DatagramSocket datagramSocket;
 
