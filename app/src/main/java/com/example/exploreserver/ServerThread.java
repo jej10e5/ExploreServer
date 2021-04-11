@@ -22,6 +22,7 @@ public class ServerThread extends Thread {
 
     public static android.os.Handler mMainHandler;
     private Context mContext;
+
     public String ip2; //UDP 소켓와 연결 하기 위한 ip주소 선언
     public ServerThread(Context context, Handler mainHandler){
         mContext=context;
@@ -33,7 +34,7 @@ public class ServerThread extends Thread {
         ServerSocket servSock=null;
         try{
             //서버 소켓을 초기화한다.
-            servSock=new ServerSocket(9001);
+            servSock=new ServerSocket(9000);
             //서버의  IP주소와 포트 번호를 출력한다.
             doPrintln(">> 서버 시작! "+getDeviceIp()+"/"+servSock.getLocalPort());
 
@@ -92,7 +93,7 @@ public class ServerThread extends Thread {
         if(ipaddr==null)
             ipaddr=getMobileIp();
         if(ipaddr==null)
-            ipaddr="";
+            ipaddr="127.0.0.1";
         return ipaddr;
     }
 

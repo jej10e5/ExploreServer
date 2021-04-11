@@ -8,7 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class RecvThread extends Thread {
-    public static final int HEADER_GO = 0x11111111; //앞으로 가는 키의 주소
+
+    public static final int HEADER_FORWARD = 0x11111111; //앞으로 가는 키의 주소
     public static final int HEADER_BACK = 0X22222222; //뒤로 가는 키의 주소
     public static final int HEADER_RIGHT = 0x33333333; //오른쪽으로 가는 키의 주소
     public static final int HEADER_LEFT = 0x44444444; //왼쪽으로 가는 키의 주소
@@ -32,8 +33,8 @@ public class RecvThread extends Thread {
                 header = mDataInputStream.readInt();
                 length = mDataInputStream.readInt();
                 switch (header) {
-                    case HEADER_GO:
-                        String go = mDataInputStream.readUTF();
+                    case HEADER_FORWARD:
+                        String forward = mDataInputStream.readUTF();
                         Message msg1 = Message.obtain();
                         msg1.what = MainActivity.CMD_FORWARDBUTTON;
                         msg1.obj = "F";
