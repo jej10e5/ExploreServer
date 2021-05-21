@@ -30,6 +30,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.opencv.android.CameraBridgeViewBase;
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -40,6 +44,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.Semaphore;
 
 public class MainActivity extends AppCompatActivity {
     /*블루투스*/
@@ -73,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
     private CapturePreview mCapturePreview;
     private DeviceLocation mDeviceLocation;
     private ServerThread mServerThread;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         android.os.Process.killProcess(android.os.Process.myPid());
     }
+
 
     public void mOnClick(View v){
         switch (v.getId()){
